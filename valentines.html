@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💖</title>
+    <style>
+        body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    /* Add your image as background */
+    background: url('pug.png') no-repeat center center fixed;
+    background-size: cover; /* makes image cover the whole screen */
+    overflow: hidden;
+    margin: 0;
+    padding: 50px;
+    color: #d6336c; /* text color */
+}
+
+
+        h1 {
+            font-size: 3em;
+            color: #d6336c;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        button {
+            font-size: 1.5em;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #yesBtn {
+            background-color: #ff4d94;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #ffb3c6;
+            color: white;
+            position: relative;
+        }
+
+        #message {
+            font-size: 2em;
+            margin-top: 40px;
+            color: #d6336c;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff4d94;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine Esteban? 💖</h1>
+    <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+    <div id="message"></div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const message = document.getElementById('message');
+
+        yesBtn.addEventListener('click', () => {
+            message.textContent = "Sorry for asking too late.💕";
+            yesBtn.style.display = 'none';
+            noBtn.style.display = 'none';
+            startHearts();
+        });
+
+        // No button runs away
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        });
+
+        // Function to create floating hearts
+        function startHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.fontSize = 20 + Math.random() * 30 + 'px';
+                document.body.appendChild(heart);
+                heart.textContent = '💖';
+
+                // Remove heart after animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>
